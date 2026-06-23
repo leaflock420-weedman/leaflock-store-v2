@@ -1,10 +1,10 @@
 services:
   - type: web
     name: leaflock-store
-    runtime: node
+    runtime: static
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: echo "LeafLock Store static deploy"
+    staticPublishPath: .
     envVars:
       - key: NODE_VERSION
         value: "20"
