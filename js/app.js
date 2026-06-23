@@ -282,7 +282,7 @@ function initProduct() {
         <div class="product-trust">
           <span>Ships Australia-wide</span>
           <span>30-day returns</span>
-          <span>Secure checkout</span>
+          <span>PayPal F&amp;F</span>
         </div>
       </div>
     </div>`;
@@ -373,7 +373,8 @@ function initCart() {
           <div class="summary-row"><span>Shipping</span><strong>${shipping ? window.formatMoney(shipping) : "Free"}</strong></div>
           ${subtotal < 200 ? `<p class="shipping-note">Spend ${window.formatMoney(200 - subtotal)} more for free shipping.</p>` : `<p class="shipping-note success">You unlocked free shipping.</p>`}
           <div class="summary-row total"><span>Total</span><strong>${window.formatMoney(total)}</strong></div>
-          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button">Proceed to checkout</button>
+          <p class="checkout-note">Pay with PayPal <strong>Friends &amp; Family</strong> (non-refundable). On PayPal, choose Friends &amp; Family — not Goods &amp; Services. Your order summary is copied to paste in the note field.</p>
+          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button">Pay ${window.formatMoney(total)} with PayPal</button>
           <a class="btn btn-secondary btn-wide" href="shop.html">Continue shopping</a>
         </aside>
       </div>`;
@@ -401,14 +402,13 @@ function initCart() {
         window.updateCartBadge?.();
       });
     });
-    document.getElementById("checkout-btn")?.addEventListener("click", () => {
-      const paypalId = window.LEAFLOCK_CONFIG?.paypalClientId;
-      if (paypalId) {
-        showToast("PayPal checkout loading…");
-        // PayPal Smart Buttons will mount here once client ID is set in js/config.js
-        return;
-      }
-      showToast("PayPal checkout coming soon — add your client ID in js/config.js");
+    document.getElementById("checkout-btn")?.addEventListener("click", async () => {
+      const freshItems = window.LeafLockStore.readCart();
+      const freshSubtotal = window.LeafLockStore.cartSubtotal(freshItems);
+      const freshShipping = freshSubtotal >= 200 ? 0 : 12.5;
+      const freshTotal = freshSubtotal + freshShipping;
+      await window.startPayPalCheckout?.(freshItems, freshTotal);
+      showToast("PayPal opened — choose Friends & Family and paste your order note");
     });
   }
 

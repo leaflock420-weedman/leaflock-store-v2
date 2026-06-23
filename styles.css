@@ -1862,6 +1862,17 @@ main {
   margin: 0 0 14px;
 }
 .shipping-note.success { color: var(--leaf); font-weight: 700; }
+.checkout-note {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(57, 255, 122, 0.06);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.checkout-note strong { color: var(--ink); }
 .cart-empty { text-align: center; padding: 64px 20px; }
 .cart-empty h1 { margin-bottom: 10px; }
 
