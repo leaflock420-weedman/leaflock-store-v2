@@ -580,6 +580,10 @@ main {
   background: var(--surface);
 }
 .stat-bar article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px 16px;
   text-align: center;
   border-right: 1px solid var(--line);
@@ -587,16 +591,23 @@ main {
 .stat-bar article:last-child { border-right: 0; }
 .stat-bar strong {
   display: block;
+  width: 100%;
+  text-align: center;
   font-family: "Bebas Neue", sans-serif;
   font-size: 2rem;
   color: var(--leaf);
   letter-spacing: 0.06em;
+  line-height: 1;
 }
 .stat-bar span {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  text-align: center;
   font-family: "Barlow Condensed", Barlow, sans-serif;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -604,7 +615,12 @@ main {
   padding: 0;
 }
 .stat-bar .stat-link a {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   padding: 20px 16px;
   color: inherit;
   text-decoration: none;

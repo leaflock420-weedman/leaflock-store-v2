@@ -138,6 +138,11 @@ function showToast(message) {
 }
 
 function initHome() {
+  const countEl = document.getElementById("stat-product-count");
+  if (countEl) {
+    countEl.textContent = String(window.LEAFLOCK_CATALOG_COUNT || window.LEAFLOCK_PRODUCTS?.length || 12);
+  }
+
   const popular = document.getElementById("popular-products");
   if (!popular) return;
   const picks = ["humidity-pack-62", "gummy-mix-90g", "branch-whisperers", "master-ties", "curing-bag-1lb", "gold-pendant"];

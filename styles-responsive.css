@@ -68,8 +68,7 @@
   }
 
   .trust,
-  .trust-bar,
-  .stat-bar {
+  .trust-bar {
     padding-left: var(--page-pad);
     padding-right: var(--page-pad);
   }
