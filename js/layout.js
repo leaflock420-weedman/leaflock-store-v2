@@ -21,30 +21,19 @@
     if (!header || !footer) return;
 
     const ticker = [
+      "LL 104.2 — on air 24/7",
       "Free shipping $200+",
-      "Merch drop live",
-      "Lock in freshness",
+      "9 products by LeafLock",
       "8 stockists nationwide",
-      "Bundle & save",
+      "Merch drop live",
       "AU designed",
-      "Cop online 24/7",
     ];
     const marqueeItems = [...ticker, ...ticker].map((item) => `<span>${item}</span>`).join("");
-    const marqueeReverse = [...ticker].reverse().concat([...ticker].reverse())
-      .map((item) => `<span>${item}</span>`).join("");
 
     header.innerHTML = `
       <button type="button" class="menu-overlay" id="menu-overlay" hidden aria-label="Close menu"></button>
-      <div class="announce announce--dual">
+      <div class="announce">
         <div class="marquee"><div class="marquee-track">${marqueeItems}</div></div>
-        <div class="marquee marquee--reverse" aria-hidden="true"><div class="marquee-track">${marqueeReverse}</div></div>
-      </div>
-      <div class="drop-bar">
-        <span class="drop-pulse"></span>
-        <strong>Restock live</strong>
-        <span class="drop-divider">|</span>
-        <span id="drop-countdown">Loading...</span>
-        <a href="shop.html?cat=humidity" class="drop-cta">Shop now →</a>
       </div>
       <div class="header">
         <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
@@ -97,15 +86,15 @@
           <a href="contact.html#wholesale">Wholesale</a>
         </div>
         <div>
-          <h3>Stay locked in</h3>
-          <p>First access to drops & restocks.</p>
+          <h3>Tune in</h3>
+          <p>Drops, restocks & LL 104.2 updates.</p>
           <form class="newsletter" data-newsletter>
             <input type="email" placeholder="Email" required>
             <button class="btn btn-primary" type="submit">Join</button>
           </form>
         </div>
       </div>
-      <p class="copyright">© 2026 LeafLock · Locked in.</p>`;
+      <p class="copyright">© 2026 LeafLock · LL 104.2</p>`;
 
     window.initDropCountdown?.();
   };
