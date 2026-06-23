@@ -373,8 +373,17 @@ function initCart() {
           <div class="summary-row"><span>Shipping</span><strong>${shipping ? window.formatMoney(shipping) : "Free"}</strong></div>
           ${subtotal < 200 ? `<p class="shipping-note">Spend ${window.formatMoney(200 - subtotal)} more for free shipping.</p>` : `<p class="shipping-note success">You unlocked free shipping.</p>`}
           <div class="summary-row total"><span>Total</span><strong>${window.formatMoney(total)}</strong></div>
-          <p class="checkout-note">Pay with PayPal <strong>Friends &amp; Family</strong> (non-refundable). On PayPal, choose Friends &amp; Family — not Goods &amp; Services. Your order summary is copied to paste in the note field.</p>
-          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button">Pay ${window.formatMoney(total)} with PayPal</button>
+          <div class="checkout-note">
+            <p><strong>PayPal Friends &amp; Family only</strong> (non-refundable)</p>
+            <ol class="checkout-steps">
+              <li>We open <strong>paypal.me/leaflockstore</strong> with <strong>${window.formatMoney(total)}</strong> — check the amount matches.</li>
+              <li>Choose <strong>Sending to a friend</strong> / <strong>Friends &amp; Family</strong> — not Goods &amp; Services.</li>
+              <li>Paste the order note we copy for you (starts with “Friends &amp; Family payment only…”).</li>
+            </ol>
+          </div>
+          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button">Pay ${window.formatMoney(total)} on PayPal</button>
+          <p class="checkout-link-label">Your link</p>
+          <a class="checkout-link" id="paypal-link" href="${window.buildPayPalCheckoutUrl?.(total) || "#"}" target="_blank" rel="noopener">${window.buildPayPalCheckoutUrl?.(total) || "paypal.me/leaflockstore"}</a>
           <a class="btn btn-secondary btn-wide" href="shop.html">Continue shopping</a>
         </aside>
       </div>`;
@@ -407,8 +416,12 @@ function initCart() {
       const freshSubtotal = window.LeafLockStore.cartSubtotal(freshItems);
       const freshShipping = freshSubtotal >= 200 ? 0 : 12.5;
       const freshTotal = freshSubtotal + freshShipping;
-      await window.startPayPalCheckout?.(freshItems, freshTotal);
-      showToast("PayPal opened — choose Friends & Family and paste your order note");
+      const result = await window.startPayPalCheckout?.(freshItems, freshTotal);
+      showToast(
+        result?.copied
+          ? "PayPal opened — pick Sending to a friend and paste your note"
+          : "PayPal opened — pick Sending to a friend and add your order note"
+      );
     });
   }
 

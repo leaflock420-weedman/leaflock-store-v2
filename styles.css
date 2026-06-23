@@ -1872,7 +1872,32 @@ main {
   font-size: 13px;
   line-height: 1.5;
 }
+.checkout-note p { margin: 0 0 10px; }
 .checkout-note strong { color: var(--ink); }
+.checkout-steps {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+.checkout-steps li { padding-left: 4px; }
+.checkout-link-label {
+  margin: 10px 0 6px;
+  font-family: "Barlow Condensed", Barlow, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.checkout-link {
+  display: block;
+  margin-bottom: 12px;
+  word-break: break-all;
+  font-size: 13px;
+  color: var(--leaf);
+}
+.checkout-link:hover { color: var(--lime); }
 .cart-empty { text-align: center; padding: 64px 20px; }
 .cart-empty h1 { margin-bottom: 10px; }
 
