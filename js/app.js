@@ -333,9 +333,6 @@ function initCart() {
     const subtotal = window.LeafLockStore.cartSubtotal(items);
     const shipping = subtotal >= 200 || subtotal === 0 ? 0 : 12.5;
     const total = subtotal + shipping;
-    const paypalMe = window.LEAFLOCK_CONFIG?.paypalMe || "leaflockstore";
-    const paypalUrl = window.buildPayPalCheckoutUrl?.(total) || `https://paypal.me/${paypalMe}/${total.toFixed(2)}AUD`;
-
     if (!items.length) {
       root.innerHTML = `
         <div class="empty cart-empty">
