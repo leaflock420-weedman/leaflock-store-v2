@@ -26,7 +26,7 @@
       "LeafLock FM — free for everyone",
       "Free shipping $200+",
       "Merch drop live",
-      "9 products by LeafLock",
+      `${window.LEAFLOCK_BRAND_COUNT || 9} products by LeafLock`,
       "8 stockists nationwide",
       "Bundle & save",
       "AU designed",
@@ -46,7 +46,7 @@
           <img src="${LOGO}" width="160" height="48" alt="LeafLock">
         </a>
         <div class="header-actions">
-          <a class="icon-link" href="shop.html" aria-label="Search">
+          <a class="icon-link" href="shop.html" aria-label="Browse shop">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </a>
           <a class="btn btn-cart" href="cart.html">Bag ${cartBadge()}</a>
@@ -80,6 +80,8 @@
           <h3>Shop</h3>
           <a href="shop.html?cat=humidity">Humidity</a>
           <a href="shop.html?cat=grow">Grow Tools</a>
+          <a href="shop.html?cat=gummies">Gummies</a>
+          <a href="shop.html?cat=wax">Wax Wizard</a>
           <a href="shop.html?cat=merch">Merch</a>
           <a href="shop.html">All products</a>
         </div>
@@ -102,7 +104,6 @@
       </div>
       <p class="copyright">© 2026 LeafLock</p>`;
 
-    window.initDropCountdown?.();
   };
 
   window.updateCartBadge = function updateCartBadge() {

@@ -1512,6 +1512,13 @@ main {
   margin: 6px 0 0;
   font-size: clamp(2.5rem, 5vw, 4rem);
 }
+.page-lead {
+  margin: 8px 0 0;
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
 
 .search-box {
   display: flex;

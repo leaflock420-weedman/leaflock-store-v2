@@ -1,4 +1,5 @@
-window.LEAFLOCK_BRAND_COUNT = 9;
+const HUMIDITY_IMG =
+  "https://www.leaflock.com.au/cdn/shop/files/Untitled_design_-_2025-11-11T233208.411.png?v=1780013371&width=700";
 
 window.LEAFLOCK_PRODUCTS = [
   {
@@ -208,7 +209,7 @@ window.LEAFLOCK_PRODUCTS = [
 
 window.LEAFLOCK_CATEGORIES = [
   { id: "all", label: "All products", image: null },
-  { id: "humidity", label: "Humidity Control", image: "https://www.leaflock.com.au/cdn/shop/collections/Leaflock_clothing_2.png?v=1763681826&width=700" },
+  { id: "humidity", label: "Humidity Control", image: HUMIDITY_IMG },
   { id: "grow", label: "Grow Tools", image: "https://www.leaflock.com.au/cdn/shop/collections/Grow_Tools.png?v=1762841799&width=700" },
   { id: "gummies", label: "Gummies", image: "https://www.leaflock.com.au/cdn/shop/collections/Gummy_Mix.png?v=1762546912&width=700" },
   { id: "wax", label: "Wax Wizard", image: "https://www.leaflock.com.au/cdn/shop/collections/Terp_Blendz.png?v=1762548028&width=700" },
@@ -221,4 +222,31 @@ window.getProduct = function getProduct(id) {
 
 window.formatMoney = function formatMoney(amount) {
   return `$${amount.toFixed(2)}`;
+};
+
+const BRAND_CORE_IDS = new Set([
+  "humidity-pack-62",
+  "curing-bag-1lb",
+  "gummy-mix-90g",
+  "gummy-mix-179g",
+  "gummy-mix-2pk",
+  "gummy-mix-3pk",
+  "branch-whisperers",
+  "master-ties",
+  "biscotti-wax-wizard"
+]);
+
+window.LEAFLOCK_PRODUCTS.forEach((product) => {
+  product.brandCore = BRAND_CORE_IDS.has(product.id);
+});
+
+window.LEAFLOCK_BRAND_COUNT = window.LEAFLOCK_PRODUCTS.filter((p) => p.brandCore).length;
+window.LEAFLOCK_CATALOG_COUNT = window.LEAFLOCK_PRODUCTS.length;
+
+window.getDefaultVariant = function getDefaultVariant(product) {
+  if (!product?.variants?.length) return null;
+  if (product.id === "humidity-pack-62") {
+    return product.variants.find((v) => v.id === "23-pack") || product.variants[0];
+  }
+  return product.variants[0];
 };

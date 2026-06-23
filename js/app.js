@@ -110,9 +110,10 @@ function bindQuickAdd(root = document) {
     btn.addEventListener("click", () => {
       const product = window.getProduct(btn.dataset.quickAdd);
       if (!product) return;
+      const variant = window.getDefaultVariant(product);
       window.LeafLockStore.addToCart({
         productId: product.id,
-        variantId: product.variants[0].id,
+        variantId: variant.id,
         qty: 1
       });
       showToast(`${product.name} added to cart`);
@@ -139,7 +140,7 @@ function showToast(message) {
 function initHome() {
   const popular = document.getElementById("popular-products");
   if (!popular) return;
-  const picks = ["humidity-pack-62", "gummy-mix-90g", "branch-whisperers", "master-ties", "humidity-pack-62", "gummy-mix-90g"];
+  const picks = ["humidity-pack-62", "gummy-mix-90g", "branch-whisperers", "master-ties", "curing-bag-1lb", "gold-pendant"];
   popular.innerHTML = picks
     .map((id) => window.getProduct(id))
     .filter(Boolean)
@@ -147,27 +148,7 @@ function initHome() {
     .join("");
   bindQuickAdd(popular);
   initReveal();
-  initHeroParallax();
 }
-
-function initDropCountdown() {
-  const el = document.getElementById("drop-countdown");
-  if (!el) return;
-  function tick() {
-    const now = new Date();
-    const end = new Date(now);
-    end.setHours(23, 59, 59, 999);
-    const diff = end - now;
-    const h = String(Math.floor(diff / 3600000)).padStart(2, "0");
-    const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
-    const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
-    el.textContent = `Ends ${h}:${m}:${s}`;
-  }
-  tick();
-  clearInterval(window._dropTimer);
-  window._dropTimer = setInterval(tick, 1000);
-}
-window.initDropCountdown = initDropCountdown;
 
 function initReveal() {
   const items = document.querySelectorAll(".reveal");
@@ -189,12 +170,11 @@ function initReveal() {
   items.forEach((el) => io.observe(el));
 }
 
-function initHeroParallax() {}
-
 function initShop() {
   const grid = document.getElementById("shop-grid");
   const filters = document.getElementById("shop-filters");
   const title = document.getElementById("shop-title");
+  const lead = document.getElementById("shop-lead");
   if (!grid || !filters) return;
 
   const params = new URLSearchParams(location.search);
@@ -213,6 +193,11 @@ function initShop() {
     bindQuickAdd(grid);
     const cat = window.LEAFLOCK_CATEGORIES.find((c) => c.id === activeCat);
     if (title) title.textContent = cat?.label || "All products";
+    if (lead) {
+      const core = window.LEAFLOCK_BRAND_COUNT || 9;
+      const total = window.LEAFLOCK_CATALOG_COUNT || window.LEAFLOCK_PRODUCTS.length;
+      lead.textContent = `${core} core LeafLock products · ${total} listings including bundles & merch.`;
+    }
   }
 
   filters.innerHTML = window.LEAFLOCK_CATEGORIES.map(
@@ -249,8 +234,9 @@ function initProduct() {
     return;
   }
 
-  let selectedVariant = product.variants[0];
+  let selectedVariant = window.getDefaultVariant(product);
   const hasMultipleImages = product.images.length > 1;
+  document.title = `${product.name} — LeafLock`;
 
   root.innerHTML = `
     <nav class="breadcrumb"><a href="index.html">Home</a> / <a href="shop.html?cat=${product.category}">${product.categoryLabel}</a> / <span>${product.name}</span></nav>
@@ -273,7 +259,7 @@ function initProduct() {
           <label class="field">
             <span>Choose option</span>
             <select id="variant-select">
-              ${product.variants.map((v) => `<option value="${v.id}">${v.label} — ${window.formatMoney(v.price)}</option>`).join("")}
+              ${product.variants.map((v) => `<option value="${v.id}"${v.id === selectedVariant.id ? " selected" : ""}>${v.label} — ${window.formatMoney(v.price)}</option>`).join("")}
             </select>
           </label>` : ""}
         <label class="field qty-field">
