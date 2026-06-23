@@ -20,4 +20,4 @@ Open http://localhost:3848
 
 ## Checkout
 
-PayPal Friends & Family via `paypal.me/leaflockstore` (configured in `js/config.js`).
+PayPal Friends & Family via personal `paypal.me/leaflock420` (configured in `js/config.js`).

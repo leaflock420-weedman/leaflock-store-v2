@@ -1,8 +1,7 @@
 window.LEAFLOCK_CONFIG = {
-  // https://paypal.me/leaflockstore — buyer must pick "Sending to a friend" on PayPal.
-  paypalMe: "leaflockstore",
+  // Personal PayPal.me — straight Friends & Family (business me-links are G&S only).
+  paypalMe: "leaflock420",
   paypalCurrency: "AUD",
-  paypalPaymentNote:
-    "NON-REFUNDABLE — Friends & Family only. Select Sending to a friend (not Goods & Services). Thank you!",
+  paypalPaymentNote: "NON-REFUNDABLE — LeafLock order. Thank you!",
   fmUrl: "https://fm.leaflock.com.au",
 };
