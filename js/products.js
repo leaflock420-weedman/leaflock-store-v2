@@ -1,3 +1,5 @@
+window.LEAFLOCK_BRAND_COUNT = 9;
+
 window.LEAFLOCK_PRODUCTS = [
   {
     id: "humidity-pack-62",

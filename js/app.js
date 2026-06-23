@@ -189,20 +189,7 @@ function initReveal() {
   items.forEach((el) => io.observe(el));
 }
 
-function initHeroParallax() {
-  const hero = document.querySelector(".hero-full");
-  const watermark = document.querySelector(".hero-watermark");
-  if (!hero || !watermark) return;
-  window.addEventListener(
-    "scroll",
-    () => {
-      const y = window.scrollY;
-      if (y > window.innerHeight) return;
-      watermark.style.transform = `translateX(${y * 0.15}px)`;
-    },
-    { passive: true }
-  );
-}
+function initHeroParallax() {}
 
 function initShop() {
   const grid = document.getElementById("shop-grid");
