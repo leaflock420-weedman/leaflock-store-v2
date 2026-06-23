@@ -668,6 +668,18 @@ main {
   overflow: hidden;
 }
 
+.cat-rail .section-head.flush {
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.cat-rail .rail-scroll {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .rail-scroll {
   display: flex;
   gap: 8px;
@@ -708,6 +720,7 @@ main {
 .rail-info {
   padding: 14px;
   border-top: 1px solid var(--line);
+  text-align: center;
 }
 .rail-info strong {
   display: block;

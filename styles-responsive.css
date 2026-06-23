@@ -355,6 +355,13 @@
     gap: 10px;
   }
 
+  .cat-rail .section-head.flush,
+  .products-rail .section-head.flush,
+  .reviews-rail .section-head.flush {
+    align-items: center;
+    text-align: center;
+  }
+
   .section-head h2 {
     font-size: clamp(1.6rem, 7vw, 2.2rem);
   }
