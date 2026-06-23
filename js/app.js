@@ -281,7 +281,7 @@ function initProduct() {
         <ul class="feature-list">${product.features.map((f) => `<li>${f}</li>`).join("")}</ul>
         <div class="product-trust">
           <span>Ships Australia-wide</span>
-          <span>30-day returns</span>
+          <span>Final sale — F&amp;F</span>
           <span>PayPal F&amp;F</span>
         </div>
       </div>
@@ -373,15 +373,20 @@ function initCart() {
           <div class="summary-row"><span>Shipping</span><strong>${shipping ? window.formatMoney(shipping) : "Free"}</strong></div>
           ${subtotal < 200 ? `<p class="shipping-note">Spend ${window.formatMoney(200 - subtotal)} more for free shipping.</p>` : `<p class="shipping-note success">You unlocked free shipping.</p>`}
           <div class="summary-row total"><span>Total</span><strong>${window.formatMoney(total)}</strong></div>
-          <div class="checkout-note">
-            <p><strong>PayPal Friends &amp; Family only</strong> (non-refundable)</p>
+          <div class="checkout-note checkout-note--final">
+            <p><strong>Final sale — non-refundable</strong></p>
+            <p>PayPal <strong>Friends &amp; Family only</strong>. No buyer protection, no chargebacks, no refunds. Do not use Goods &amp; Services.</p>
             <ol class="checkout-steps">
-              <li>We open <strong>paypal.me/leaflockstore</strong> with <strong>${window.formatMoney(total)}</strong> — check the amount matches.</li>
-              <li>Choose <strong>Sending to a friend</strong> / <strong>Friends &amp; Family</strong> — not Goods &amp; Services.</li>
-              <li>Paste the order note we copy for you (starts with “Friends &amp; Family payment only…”).</li>
+              <li>We open <strong>paypal.me/leaflockstore</strong> at <strong>${window.formatMoney(total)}</strong> — confirm the amount.</li>
+              <li>Select <strong>Sending to a friend</strong> / <strong>Friends &amp; Family</strong> only.</li>
+              <li>Paste the copied note — it says <strong>NON-REFUNDABLE</strong> and lists your order.</li>
             </ol>
           </div>
-          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button">Pay ${window.formatMoney(total)} on PayPal</button>
+          <label class="checkout-ack">
+            <input type="checkbox" id="checkout-ack">
+            <span>I agree: Friends &amp; Family payment only. <strong>All sales are final and non-refundable.</strong></span>
+          </label>
+          <button class="btn btn-primary btn-wide" id="checkout-btn" type="button" disabled>Pay ${window.formatMoney(total)} on PayPal</button>
           <p class="checkout-link-label">Your link</p>
           <a class="checkout-link" id="paypal-link" href="${window.buildPayPalCheckoutUrl?.(total) || "#"}" target="_blank" rel="noopener">${window.buildPayPalCheckoutUrl?.(total) || "paypal.me/leaflockstore"}</a>
           <a class="btn btn-secondary btn-wide" href="shop.html">Continue shopping</a>
@@ -411,7 +416,19 @@ function initCart() {
         window.updateCartBadge?.();
       });
     });
-    document.getElementById("checkout-btn")?.addEventListener("click", async () => {
+    const ack = document.getElementById("checkout-ack");
+    const checkoutBtn = document.getElementById("checkout-btn");
+    if (ack && checkoutBtn) {
+      ack.addEventListener("change", () => {
+        checkoutBtn.disabled = !ack.checked;
+      });
+    }
+
+    checkoutBtn?.addEventListener("click", async () => {
+      if (!document.getElementById("checkout-ack")?.checked) {
+        showToast("Tick the box to confirm final sale / non-refundable");
+        return;
+      }
       const freshItems = window.LeafLockStore.readCart();
       const freshSubtotal = window.LeafLockStore.cartSubtotal(freshItems);
       const freshShipping = freshSubtotal >= 200 ? 0 : 12.5;

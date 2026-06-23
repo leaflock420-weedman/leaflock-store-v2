@@ -1873,7 +1873,39 @@ main {
   line-height: 1.5;
 }
 .checkout-note p { margin: 0 0 10px; }
+.checkout-note p:last-of-type { margin-bottom: 0; }
 .checkout-note strong { color: var(--ink); }
+.checkout-note--final {
+  border-color: rgba(255, 45, 45, 0.35);
+  background: rgba(255, 45, 45, 0.06);
+}
+.checkout-ack {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  cursor: pointer;
+}
+.checkout-ack input {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--leaf);
+}
+.checkout-ack strong { color: var(--ink); }
+#checkout-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 .checkout-steps {
   margin: 0;
   padding-left: 18px;

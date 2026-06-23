@@ -3,6 +3,6 @@ window.LEAFLOCK_CONFIG = {
   paypalMe: "leaflockstore",
   paypalCurrency: "AUD",
   paypalPaymentNote:
-    "Friends & Family payment only — please select Sending to a friend. Thank you!",
+    "NON-REFUNDABLE — Friends & Family only. Select Sending to a friend (not Goods & Services). Thank you!",
   fmUrl: "https://fm.leaflock.com.au",
 };

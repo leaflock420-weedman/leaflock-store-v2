@@ -9,7 +9,7 @@ window.buildOrderNote = function buildOrderNote(items) {
   if (!items?.length) return "";
   const intro =
     window.LEAFLOCK_CONFIG?.paypalPaymentNote ||
-    "Friends & Family payment only — please select Sending to a friend. Thank you!";
+    "NON-REFUNDABLE — Friends & Family only. Select Sending to a friend (not Goods & Services). Thank you!";
   const lines = [intro, "", "LeafLock order:"];
   items.forEach((item) => {
     lines.push(
