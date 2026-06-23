@@ -141,18 +141,26 @@
     });
   }
 
+  function isCompactLocator() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
   function setView(mode) {
     viewMode = mode;
     const mapEl = document.getElementById("locator-map");
     const listEl = document.getElementById("store-list-panel");
     const bodyEl = document.querySelector(".locator-body");
+    const compact = isCompactLocator();
     document.querySelectorAll("[data-view]").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.view === mode);
     });
     bodyEl?.classList.toggle("list-only", mode === "list");
+    bodyEl?.classList.toggle("map-with-list", compact && mode === "map");
     if (mapEl) mapEl.hidden = mode === "list";
-    if (listEl) listEl.hidden = mode === "map";
-    if (mode === "map" && map) google.maps.event.trigger(map, "resize");
+    if (listEl) listEl.hidden = !compact && mode === "map";
+    if (mode === "map" && map) {
+      requestAnimationFrame(() => google.maps.event.trigger(map, "resize"));
+    }
   }
 
   function loadMaps() {
@@ -316,6 +324,7 @@
 
         update();
         setView("map");
+        window.addEventListener("resize", () => setView(viewMode));
       })
       .catch(() => {
         const status = document.getElementById("locator-status");

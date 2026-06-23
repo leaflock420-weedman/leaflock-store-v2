@@ -59,6 +59,11 @@ img, video { display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: 0; background: none; }
 
+a, button, input, select, textarea, .btn, .filter-btn, .view-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 h1, h2, h3 {
   font-family: "Bebas Neue", Barlow, sans-serif;
   line-height: 0.95;
@@ -140,7 +145,7 @@ h1, h2, h3 {
   top: 0;
   z-index: 20;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 main {
@@ -1462,6 +1467,7 @@ main {
 }
 .thumb-row {
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   margin-top: 12px;
 }

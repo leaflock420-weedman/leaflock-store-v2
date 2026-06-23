@@ -25,16 +25,19 @@ function setMenuOpen(open) {
   if (overlay) overlay.hidden = !open;
 }
 
+function refreshHeaderOffset() {
+  const header = document.getElementById("site-header");
+  if (!header) return;
+  document.documentElement.style.setProperty("--header-offset", `${header.offsetHeight}px`);
+}
+
 function initHeaderOffset() {
   const header = document.getElementById("site-header");
   if (!header) return;
-  const setOffset = () => {
-    document.documentElement.style.setProperty("--header-offset", `${header.offsetHeight}px`);
-  };
-  setOffset();
-  window.addEventListener("resize", setOffset);
+  refreshHeaderOffset();
+  window.addEventListener("resize", refreshHeaderOffset);
   if ("ResizeObserver" in window) {
-    const ro = new ResizeObserver(setOffset);
+    const ro = new ResizeObserver(refreshHeaderOffset);
     ro.observe(header);
   }
 }
@@ -67,6 +70,13 @@ function initMenu() {
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1100) setMenuOpen(false);
+  });
+
+  window.addEventListener("orientationchange", () => {
+    requestAnimationFrame(() => {
+      refreshHeaderOffset();
+      if (window.innerWidth > 1100) setMenuOpen(false);
+    });
   });
 }
 
@@ -287,7 +297,9 @@ function initProduct() {
             <button type="button" id="qty-plus" aria-label="Increase">+</button>
           </div>
         </label>
-        <button class="btn btn-primary btn-wide" id="add-to-cart" type="button">Add to bag</button>
+        <div class="product-buy-actions">
+          <button class="btn btn-primary btn-wide" id="add-to-cart" type="button">Add to bag</button>
+        </div>
         <ul class="feature-list">${product.features.map((f) => `<li>${f}</li>`).join("")}</ul>
         <div class="product-trust">
           <span>Ships Australia-wide</span>
