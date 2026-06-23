@@ -4,8 +4,8 @@
   "private": true,
   "description": "Standalone LeafLock ecommerce site",
   "scripts": {
-    "start": "serve . -l tcp://0.0.0.0:${PORT:-10000}",
-    "dev": "serve . -l 3848"
+    "start": "node server.js",
+    "dev": "node -e \"process.env.PORT=3848;require('./server.js')\""
   },
   "dependencies": {
     "serve": "^14.2.4"
