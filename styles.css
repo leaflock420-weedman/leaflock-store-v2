@@ -156,13 +156,11 @@ main {
 
 .announce {
   overflow: hidden;
-  background: var(--leaf);
-  color: #0a0a0a;
+  background: #0a0a0a;
   border-bottom: 1px solid var(--line);
 }
 .announce--dual { display: grid; }
-.announce--dual .marquee:first-child,
-.announce > .marquee {
+.announce--dual .marquee:first-child {
   background: var(--leaf);
   color: #0a0a0a;
 }
