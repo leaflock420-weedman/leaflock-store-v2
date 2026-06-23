@@ -600,6 +600,23 @@ main {
   text-transform: uppercase;
   color: var(--muted);
 }
+.stat-bar .stat-link {
+  padding: 0;
+}
+.stat-bar .stat-link a {
+  display: block;
+  padding: 20px 16px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.12s ease;
+}
+.stat-bar .stat-link a:hover {
+  background: rgba(57, 255, 122, 0.08);
+}
+.stat-bar .stat-link a:hover strong,
+.stat-bar .stat-link a:hover span {
+  color: var(--leaf);
+}
 
 .brand-strip {
   overflow: hidden;
@@ -1359,6 +1376,14 @@ main {
   border-color: var(--leaf);
   background: rgba(57, 255, 122, 0.1);
   color: var(--leaf);
+}
+.social-pill--fm {
+  border-color: rgba(57, 255, 122, 0.45);
+  background: rgba(57, 255, 122, 0.12);
+  color: var(--leaf);
+}
+.social-pill--fm:hover {
+  background: rgba(57, 255, 122, 0.2);
 }
 
 .footer-grid {

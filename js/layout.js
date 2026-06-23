@@ -1,11 +1,13 @@
 (function () {
   const LOGO = "assets/leaflock-logo.png";
+  const FM_URL = window.LEAFLOCK_CONFIG?.fmUrl || "https://fm.leaflock.com.au";
 
   const nav = [
     { href: "shop.html?cat=humidity", label: "Humidity" },
     { href: "shop.html?cat=grow", label: "Grow" },
     { href: "shop.html?cat=gummies", label: "Gummies" },
     { href: "shop.html?cat=merch", label: "Merch", badge: "New" },
+    { href: FM_URL, label: "FM", external: true, badge: "Free" },
     { href: "find-leaflock.html", label: "Stores" },
     { href: "contact.html", label: "Wholesale" }
   ];
@@ -21,13 +23,13 @@
     if (!header || !footer) return;
 
     const ticker = [
+      "LeafLock FM — free for everyone",
       "Free shipping $200+",
       "Merch drop live",
       "9 products by LeafLock",
       "8 stockists nationwide",
       "Bundle & save",
       "AU designed",
-      "Cop online 24/7",
     ];
     const marqueeItems = [...ticker, ...ticker].map((item) => `<span>${item}</span>`).join("");
 
@@ -52,7 +54,8 @@
         <nav class="nav" id="main-nav" aria-label="Main">
           ${nav.map((item) => {
             const badge = item.badge ? `<span class="nav-badge">${item.badge}</span>` : "";
-            return `<a href="${item.href}"${active === item.label ? ' aria-current="page"' : ""}>${item.label}${badge}</a>`;
+            const external = item.external ? ' target="_blank" rel="noopener"' : "";
+            return `<a href="${item.href}"${external}${active === item.label ? ' aria-current="page"' : ""}>${item.label}${badge}</a>`;
           }).join("")}
         </nav>
       </div>`;
@@ -62,6 +65,7 @@
       <div class="social-bar">
         <p class="social-bar-label">Follow LeafLock</p>
         <div class="social-bar-links">
+          <a class="social-pill social-pill--fm" href="${FM_URL}" target="_blank" rel="noopener">LeafLock FM — free</a>
           <a class="social-pill" href="https://www.instagram.com/leaflockstore/" target="_blank" rel="noopener">Instagram</a>
           <a class="social-pill" href="https://www.facebook.com/profile.php?id=100092366541281" target="_blank" rel="noopener">Facebook</a>
           <a class="social-pill" href="https://tiktok.com/@leaflock420" target="_blank" rel="noopener">TikTok</a>
@@ -82,6 +86,7 @@
         <div>
           <h3>Info</h3>
           <a href="about.html">About</a>
+          <a href="${FM_URL}" target="_blank" rel="noopener">LeafLock FM (free)</a>
           <a href="find-leaflock.html">Store locator</a>
           <a href="contact.html">Contact</a>
           <a href="contact.html#wholesale">Wholesale</a>
