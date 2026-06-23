@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Find LeafLock — Store Locator</title>
+  <meta name="description" content="Find LeafLock stockists across Australia. Search by location, filter by radius, and get directions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="locator" data-active="Stores">
+  <div id="age-gate" class="age-gate" hidden>
+    <div class="age-card" role="dialog" aria-labelledby="age-title" aria-modal="true">
+      <img src="assets/leaflock-logo.png" width="120" alt="LeafLock">
+      <h2 id="age-title">You must be 18+ to enter</h2>
+      <p>This site sells products intended for adults. Confirm your age to continue.</p>
+      <div class="age-actions">
+        <button class="btn btn-primary" id="age-yes" type="button">I'm 18 or older</button>
+        <a class="btn btn-ghost" href="https://www.google.com">Leave site</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-header"></div>
+
+  <main class="page">
+    <section class="locator-hero">
+      <p class="eyebrow">In store now</p>
+      <h1>Find LeafLock</h1>
+      <p>8 spots nationwide. Search your area or use your location to pull up on a stockist near you.</p>
+    </section>
+
+    <section id="store-locator" class="locator">
+      <div class="locator-toolbar">
+        <div class="locator-search-group">
+          <label class="visually-hidden" for="locator-search">Enter your location</label>
+          <input id="locator-search" type="text" placeholder="Enter your location" autocomplete="off">
+          <button class="btn btn-primary" id="locator-search-btn" type="button">Search</button>
+          <button class="btn btn-secondary" id="locator-find-me" type="button">Find my location</button>
+        </div>
+
+        <div class="locator-filters">
+          <div class="locator-filter">
+            <label for="locator-radius">Radius</label>
+            <div class="locator-radius">
+              <input id="locator-radius" type="range" min="10" max="500" step="10" value="100">
+              <span><strong id="locator-radius-value">100</strong> km</span>
+            </div>
+          </div>
+          <div class="locator-filter">
+            <label for="locator-tags">Tags</label>
+            <select id="locator-tags" aria-label="Filter by tags"></select>
+          </div>
+          <div class="locator-filter">
+            <label for="locator-country">Countries</label>
+            <select id="locator-country" aria-label="Filter by country"></select>
+          </div>
+          <button class="text-btn" id="locator-clear" type="button">Clear filters</button>
+        </div>
+
+        <div class="locator-view-toggle" role="group" aria-label="View mode">
+          <button class="view-btn active" type="button" data-view="map">Map</button>
+          <button class="view-btn" type="button" data-view="list">List</button>
+        </div>
+        <p id="locator-status" class="locator-status" aria-live="polite"></p>
+        <p id="store-count" class="store-count-label"></p>
+      </div>
+
+      <div class="locator-body">
+        <div id="locator-map" class="locator-map" role="region" aria-label="Store map"></div>
+        <aside id="store-list-panel" class="store-list-panel">
+          <h2>Stores</h2>
+          <div id="store-list" class="store-list"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/stores.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/locator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

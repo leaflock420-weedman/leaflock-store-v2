@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact — LeafLock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact" data-active="Wholesale">
+  <div id="age-gate" class="age-gate" hidden>
+    <div class="age-card" role="dialog" aria-labelledby="age-title" aria-modal="true">
+      <img src="assets/leaflock-logo.png" width="120" alt="LeafLock">
+      <h2 id="age-title">You must be 18+ to enter</h2>
+      <p>This site sells products intended for adults. Confirm your age to continue.</p>
+      <div class="age-actions">
+        <button class="btn btn-primary" id="age-yes" type="button">I'm 18 or older</button>
+        <a class="btn btn-ghost" href="https://www.google.com">Leave site</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-header"></div>
+
+  <main class="page contact-page">
+    <header class="page-hero compact">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h1>Contact LeafLock</h1>
+        <p>Orders, wholesale, pharmacy programs, and partnerships.</p>
+      </div>
+    </header>
+
+    <div class="contact-layout">
+      <section class="contact-card">
+        <h2>Reach us</h2>
+        <p><strong>Address</strong><br>Surfers Paradise, QLD 4217, Australia</p>
+        <p><strong>Email</strong><br><a href="mailto:info@leaflock.com.au">info@leaflock.com.au</a></p>
+        <p><strong>Phone</strong><br><a href="tel:+61431295201">0431 295 201</a></p>
+      </section>
+
+      <form class="contact-form" id="contact-form">
+        <label class="field"><span>Name</span><input name="name" required></label>
+        <label class="field"><span>Email</span><input type="email" name="email" required></label>
+        <label class="field"><span>Topic</span>
+          <select name="topic">
+            <option>General enquiry</option>
+            <option>Order support</option>
+            <option>Wholesale / pharmacy</option>
+            <option>Distributor</option>
+          </select>
+        </label>
+        <label class="field"><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+        <button class="btn btn-primary btn-wide" type="submit">Send message</button>
+      </form>
+    </div>
+
+    <section class="b2b" id="wholesale">
+      <div class="b2b-inner">
+        <div>
+          <p class="eyebrow">Wholesale</p>
+          <h2>Pharmacy & cultivator programs</h2>
+          <p>Volume pricing on humidity packs and curing solutions. We already support Australian dispensaries and compounding pharmacies — tell us your store count and monthly volume.</p>
+        </div>
+        <a class="btn btn-light" href="mailto:info@leaflock.com.au?subject=LeafLock%20Wholesale%20Enquiry">Email wholesale team</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("contact-form")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const toast = document.getElementById("toast") || (() => {
+        const el = document.createElement("div");
+        el.id = "toast";
+        el.className = "toast";
+        document.body.appendChild(el);
+        return el;
+      })();
+      toast.textContent = "Message sent — we'll get back to you soon";
+      toast.classList.add("show");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

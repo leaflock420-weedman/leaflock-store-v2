@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cart — LeafLock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="cart">
+  <div id="age-gate" class="age-gate" hidden>
+    <div class="age-card" role="dialog" aria-labelledby="age-title" aria-modal="true">
+      <img src="assets/leaflock-logo.png" width="120" alt="LeafLock">
+      <h2 id="age-title">You must be 18+ to enter</h2>
+      <p>This site sells products intended for adults. Confirm your age to continue.</p>
+      <div class="age-actions">
+        <button class="btn btn-primary" id="age-yes" type="button">I'm 18 or older</button>
+        <a class="btn btn-ghost" href="https://www.google.com">Leave site</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-header"></div>
+
+  <main class="page" id="cart-page"></main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
