@@ -18,6 +18,6 @@ Open http://localhost:3848
    **or** **New → Web Service** → connect repo → Build: `npm install` → Start: `npm start`.
 3. Render sets `PORT` automatically. First deploy may take a few minutes on the free tier.
 
-## PayPal
+## Checkout
 
-Add your PayPal client ID in `js/config.js` when ready.
+PayPal Friends & Family via `paypal.me/leaflockstore` (configured in `js/config.js`).
