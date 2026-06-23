@@ -266,6 +266,7 @@ main {
 
 .logo {
   grid-column: 2;
+  grid-row: 1;
   justify-self: center;
   display: flex;
   align-items: center;
@@ -283,20 +284,23 @@ main {
 #site-footer .footer-brand {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
-#site-footer .footer-brand img,
-#site-footer img {
+#site-footer .footer-brand img {
   filter: brightness(0) invert(1);
   object-fit: contain;
   max-width: 150px;
-  margin: 0 auto;
+  width: auto;
+  height: auto;
+  margin: 0;
 }
 
 .nav {
   grid-column: 1;
+  grid-row: 1;
   justify-self: start;
+  align-self: center;
   display: flex;
   gap: clamp(12px, 2vw, 24px);
   font-family: "Barlow Condensed", Barlow, sans-serif;
@@ -319,6 +323,7 @@ main {
 
 .header-actions {
   grid-column: 3;
+  grid-row: 1;
   justify-self: end;
   display: flex;
   align-items: center;
@@ -366,12 +371,23 @@ main {
 .icon-link:hover { border-color: var(--leaf); color: var(--leaf); }
 .menu-btn {
   display: none;
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  place-items: center;
   width: 42px;
   height: 42px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
+}
+
+@media (min-width: 1101px) {
+  .nav {
+    position: static;
+    display: flex;
+  }
 }
 
 /* ── FULL-BLEED HERO ── */
@@ -463,6 +479,10 @@ main {
   color: #fff;
   transform: rotate(8deg);
   z-index: 2;
+  width: auto;
+  max-width: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .pulse-dot {
   width: 6px;
@@ -694,6 +714,9 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 420px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #0a0a0a;
 }
 .lookbook-panel {
   position: relative;
@@ -701,7 +724,13 @@ main {
   display: flex;
   align-items: flex-end;
   min-height: 360px;
-  border: 1px solid var(--line);
+  border: 0;
+  border-right: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.lookbook-panel:last-child {
+  border-right: 0;
 }
 .lookbook-panel img {
   position: absolute;
@@ -760,12 +789,11 @@ main {
 
 .culture-strip {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.2fr);
   gap: 0;
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--surface);
-  max-width: 100%;
+  width: 100%;
 }
 .culture-copy {
   padding: clamp(32px, 5vw, 56px);
@@ -773,6 +801,7 @@ main {
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid var(--line);
+  min-width: 0;
 }
 .culture-copy h2 {
   margin: 0 0 12px;
@@ -783,11 +812,17 @@ main {
   margin: 0 0 20px;
   max-width: 36ch;
 }
-.culture-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.culture-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 .culture-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  min-height: 100%;
 }
 .culture-tile {
   min-height: 140px;
@@ -887,8 +922,13 @@ main {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
+.featured-product--bleed::before {
+  display: none;
+}
 .featured-product--bleed .featured-media {
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 .age-watermark {
@@ -1083,6 +1123,17 @@ main {
   color: var(--leaf);
   letter-spacing: 0.04em;
 }
+.price-tiers .price-note {
+  display: block;
+  margin-top: 4px;
+  font-family: "Barlow Condensed", Barlow, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 .product-grid {
   display: grid;
@@ -1139,6 +1190,12 @@ main {
   font-size: 14px;
   font-weight: 500;
   margin-right: 6px;
+}
+
+.locator-cta {
+  padding: 0 clamp(18px, 4vw, 40px);
+  max-width: 1400px;
+  margin: 0 auto 56px;
 }
 
 .b2b {
@@ -1245,14 +1302,71 @@ main {
   background: #050505;
   color: #aaa;
   border-top: 1px solid var(--line);
+  overflow: hidden;
 }
+
+.social-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px clamp(18px, 4vw, 40px);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(57, 255, 122, 0.08), transparent 55%);
+}
+
+.social-bar-label {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.social-bar-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Barlow Condensed", Barlow, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: border-color 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.social-pill:hover {
+  border-color: var(--leaf);
+  background: rgba(57, 255, 122, 0.1);
+  color: var(--leaf);
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-  gap: 28px;
+  gap: 28px 32px;
   max-width: 1400px;
   margin: 0 auto 28px;
-  padding: 56px clamp(18px, 4vw, 40px) 0;
+  padding: 48px clamp(18px, 4vw, 40px) 0;
+  align-items: start;
 }
 .footer-grid h3 {
   margin: 0 0 14px;
@@ -1272,15 +1386,13 @@ main {
   transition: color 0.12s ease;
 }
 .footer-grid a:hover { color: var(--leaf); }
-.social {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
+.footer-brand p {
+  margin: 14px 0 0;
+  line-height: 1.65;
+  font-size: 14px;
 }
-.social a {
-  display: inline;
-  font-weight: 700;
-  color: var(--ink) !important;
+.footer-brand a {
+  color: var(--leaf);
 }
 .newsletter {
   display: grid;
@@ -1804,7 +1916,6 @@ main {
   margin: 0;
 }
 
-.locator-cta { margin: 0 0 56px; }
 .locator-cta-inner {
   display: flex;
   align-items: center;

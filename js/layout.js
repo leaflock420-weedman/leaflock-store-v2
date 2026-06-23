@@ -47,37 +47,40 @@
         <a href="shop.html?cat=humidity" class="drop-cta">Shop now →</a>
       </div>
       <div class="header">
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <a class="logo" href="index.html">
+          <img src="${LOGO}" width="160" height="48" alt="LeafLock">
+        </a>
+        <div class="header-actions">
+          <a class="icon-link" href="shop.html" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+          <a class="btn btn-cart" href="cart.html">Bag ${cartBadge()}</a>
+        </div>
         <nav class="nav" id="main-nav" aria-label="Main">
           ${nav.map((item) => {
             const badge = item.badge ? `<span class="nav-badge">${item.badge}</span>` : "";
             return `<a href="${item.href}"${active === item.label ? ' aria-current="page"' : ""}>${item.label}${badge}</a>`;
           }).join("")}
         </nav>
-        <a class="logo" href="index.html">
-          <img src="${LOGO}" width="160" height="48" alt="LeafLock">
-        </a>
-        <div class="header-actions">
-          <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </button>
-          <a class="icon-link" href="shop.html" aria-label="Search">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </a>
-          <a class="btn btn-cart" href="cart.html">Bag ${cartBadge()}</a>
-        </div>
       </div>`;
 
     footer.innerHTML = `
       <div class="footer-mega" aria-hidden="true">LEAFLOCK</div>
+      <div class="social-bar">
+        <p class="social-bar-label">Follow LeafLock</p>
+        <div class="social-bar-links">
+          <a class="social-pill" href="https://www.instagram.com/leaflockstore/" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-pill" href="https://www.facebook.com/profile.php?id=100092366541281" target="_blank" rel="noopener">Facebook</a>
+          <a class="social-pill" href="https://tiktok.com/@leaflock420" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="${LOGO}" width="130" alt="LeafLock">
           <p>Surfers Paradise, QLD 4217<br><a href="mailto:info@leaflock.com.au">info@leaflock.com.au</a><br>0431 295 201</p>
-          <div class="social">
-            <a href="https://www.instagram.com/leaflockstore/">IG</a>
-            <a href="https://www.facebook.com/profile.php?id=100092366541281">FB</a>
-            <a href="https://tiktok.com/@leaflock420">TT</a>
-          </div>
         </div>
         <div>
           <h3>Shop</h3>

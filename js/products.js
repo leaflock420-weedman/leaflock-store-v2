@@ -4,24 +4,26 @@ window.LEAFLOCK_PRODUCTS = [
     name: "LeafLock 2-Way Humidity Pack 62%",
     category: "humidity",
     categoryLabel: "Humidity Control",
-    price: 4.2,
-    priceLabel: "From $4.20",
+    price: 2.39,
+    priceLabel: "From $4.20 · $2.39 bulk",
     compareAt: null,
     badge: "Best seller",
+    singlePrice: 4.2,
+    bulkUnitPrice: 2.39,
     image: "https://www.leaflock.com.au/cdn/shop/files/Untitled_design_-_2025-11-11T233208.411.png?v=1780013371&width=1200",
     images: [
       "https://www.leaflock.com.au/cdn/shop/files/Untitled_design_-_2025-11-11T233208.411.png?v=1780013371&width=1200",
       "https://www.leaflock.com.au/cdn/shop/files/7da755cb-09e6d7_4a92cc8537134a90938828698e80dea4_mv2.png?v=1780013371&width=800"
     ],
     variants: [
-      { id: "1-pack", label: "1 Pack", price: 4.2 },
+      { id: "1-pack", label: "1 Pack — novelty single", price: 4.2 },
       { id: "2-pack", label: "2 Pack", price: 7.0 },
       { id: "5-pack", label: "5 Pack", price: 13.5 },
       { id: "10-pack", label: "10 Pack", price: 25.0 },
-      { id: "25-pack", label: "25 Pack", price: 55.0 }
+      { id: "23-pack", label: "23 Pack — $2.39/ea", price: 55.0 }
     ],
-    description: "Australian-designed two-way humidity packs that automatically balance moisture in jars, bags, and tins. No setup or maintenance — drop in and lock in freshness.",
-    features: ["62% RH target", "Two-way control", "Non-toxic materials", "Works in any airtight container"]
+    description: "Australian-designed two-way humidity packs that automatically balance moisture in jars, bags, and tins. Singles are $4.20 (postage makes it a novelty cop). Real value is $2.39 per pack when you grab 23 for $55.",
+    features: ["62% RH target", "Two-way control", "23 for $55 ($2.39 ea)", "1 pack $4.20 single ship"]
   },
   {
     id: "curing-bag-1lb",

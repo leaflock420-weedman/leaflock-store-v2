@@ -5,3 +5,5 @@ node_modules/
 Thumbs.db
 *.log
 _homepage-scrape.txt
+.chrome-deploy-profile/
+render-*.png
